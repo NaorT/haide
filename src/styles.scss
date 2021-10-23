@@ -8,6 +8,7 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  color: #e8eaed;
 }
 
 .btn {
@@ -32,4 +33,14 @@ body {
       box-shadow: 0 0 0 0.15rem rgb(255 0 0 / 50%);
     }
   }
+}
+
+.bold {
+    font-weight: bold !important;
+}
+
+mat-icon {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
 }

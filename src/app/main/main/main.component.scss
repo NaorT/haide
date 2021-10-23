@@ -1,0 +1,79 @@
+@import '../../../colors.scss';
+
+.main-container {
+  position: absolute;
+  top: 60px;
+  bottom: 60px;
+  left: 0;
+  right: 0;
+}
+
+.main-sidenav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 240px;
+  background: $black-color;
+  padding: 15px;
+  color: $white-color;
+
+  .link {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    opacity: .7;
+    transition: all .3s;
+
+    .title {
+      margin-left: 10px;
+    }
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &.is-active {
+      background-color: rgba($gray-dark, .7);
+    }
+  }
+}
+
+.side-nav-content {
+  background: $content-bg-color;
+  color: $txt-color;
+
+  .main-header {
+    color: $txt-color;
+    background: $content-bg-color;
+    position: fixed;
+    top: 0;
+    // left: 240px;
+    right: 0;
+    padding-left: 250px;
+  }
+
+  .main-footer {
+    background: $footer-bg-color;
+    color: $txt-color;
+    position: fixed;
+    bottom: 0;
+    left: 240px;
+    right: 0;
+    height: 100px;
+  }
+}
+
+hr {
+  color: $txt-color;
+  height: 2px;
+}
+
+.app-logo {
+  color: $orange;
+  padding: 0 12px;
+  mat-icon {
+      font-size: 32px;
+  }
+}

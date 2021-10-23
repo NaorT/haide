@@ -1,0 +1,38 @@
+  <mat-sidenav-container *ngIf="options" class="main-container" [hasBackdrop]="false">
+    <mat-sidenav #sidenav mode="side" opened class="main-sidenav d-flex flex-column"
+      [fixedInViewport]="options?.value.fixed" [fixedTopGap]="options?.value?.top"
+      [fixedBottomGap]="options?.value?.bottom">
+
+      <h1 class="d-flex align-items-center bold gap-2 app-logo">
+        <mat-icon class="material-icons">
+          play_circle_filled
+        </mat-icon>
+        HAIDE
+      </h1>
+
+      <div class="link" [routerLink]="'home'" routerLinkActive="is-active">
+        <mat-icon class="material-icons-outlined">home</mat-icon>
+        <span class="title">Home</span>
+      </div>
+
+      <div class="link" [routerLink]="'search'" routerLinkActive="is-active">
+        <mat-icon class="material-icons-outlined">search</mat-icon>
+        <span class="title">Search</span>
+      </div>
+
+      <div class="link" [routerLink]="'create'">
+        <mat-icon class="material-icons-outlined">add_box</mat-icon>
+        <span class="title">Create Playlist</span>
+      </div>
+      <hr>
+
+    </mat-sidenav>
+
+    <mat-sidenav-content class="p-3 side-nav-content" [formGroup]="options">
+      <mat-toolbar class="main-header d-flex justify-content-between align-items-center pe-3">
+        <!-- <span>Haide</span> -->
+      </mat-toolbar>
+      <router-outlet></router-outlet>
+      <mat-toolbar class="main-footer">currently play section</mat-toolbar>
+    </mat-sidenav-content>
+  </mat-sidenav-container>

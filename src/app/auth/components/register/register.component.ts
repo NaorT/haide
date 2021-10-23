@@ -35,15 +35,17 @@ export class RegisterComponent implements OnInit {
       switchMap((registerRes) => this.authService.signIn(this.form?.value))
     ).subscribe((loginRes) => {
       console.log(loginRes);
+      this.router.navigate(['main']);
     }, (err) => {
       console.log(err);
       this.signInFailed = true;
     })
   }
 
-  signInWithGoogle() {
+  signUpWithGoogle() {
     this.authService.signInWithGoogle().subscribe((res) => {
       console.log(res);
+      this.router.navigate(['main']);
     }, (err) => {
       console.log(err);
     })
