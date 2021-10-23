@@ -23,7 +23,7 @@
           <input formControlName="password" class="w-100 form-control" type="password">
           <small class="text-danger"
             *ngIf="form.get('password')?.touched && form.get('password')?.hasError('required')">
-            Email is required
+            Password is required
           </small>
           <small class="text-danger"
             *ngIf="form.get('password')?.touched && form.get('password')?.hasError('minlength')">
@@ -36,7 +36,7 @@
         <div class="d-flex flex-column gap-4">
           <button (click)="signIn()" type="button" class="btn btn-info w-100 text-white">Login</button>
           <div>Not registered yet?
-            <a href="">Create an Account</a>
+            <a [routerLink]="'/auth/register'">Create an Account</a>
           </div>
         </div>
       </div>

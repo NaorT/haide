@@ -23,7 +23,11 @@ export class LoginComponent implements OnInit {
   }
 
   signInWithGoogle() {
-    // TBD
+    this.authService.signInWithGoogle().subscribe((res) => {
+      console.log(res);
+    }, (err) => {
+      console.log(err);
+    })
   }
 
   signIn() {
@@ -32,7 +36,7 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.authService.signIn(this.form.value).subscribe((res) => {
-      this.router.navigate(['auth', 'register'])
+      console.log(res);
     }, (err) => {
       this.signInFailed = true;
     })
