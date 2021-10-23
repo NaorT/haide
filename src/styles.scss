@@ -1,1 +1,35 @@
 /* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.btn {
+  &:focus {
+    box-shadow: none !important;
+  }
+}
+
+.opacity-3 {
+  opacity: 0.3;
+}
+
+.form-control {
+  &:focus {
+    box-shadow: none;
+    border-color: unset;
+  }
+
+  &.ng-invalid {
+    &.ng-touched {
+      border-color: red;
+      box-shadow: 0 0 0 0.15rem rgb(255 0 0 / 50%);
+    }
+  }
+}
