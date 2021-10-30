@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { YoutubeResult } from '../../../youtube/state/youtube.model';
+import { YoutubeQuery } from '../../../youtube/state/youtube.query';
 
 @Component({
   selector: 'app-search-page',
@@ -6,10 +9,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./search-page.component.scss']
 })
 export class SearchPageComponent implements OnInit {
-
-  constructor() { }
+  searchResults$?: Observable<YoutubeResult[]>;
+  constructor(private youtubeQuery: YoutubeQuery) { }
 
   ngOnInit(): void {
+    this.searchResults$ = this.youtubeQuery.selectResults$;
   }
 
 }

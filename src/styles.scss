@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+@import './colors.scss';
 
 html,
 body {
@@ -8,7 +9,7 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  color: #e8eaed;
+  // color: #e8eaed;
 }
 
 .btn {
@@ -21,26 +22,28 @@ body {
   opacity: 0.3;
 }
 
-.form-control {
-  &:focus {
-    box-shadow: none;
-    border-color: unset;
-  }
-
-  &.ng-invalid {
-    &.ng-touched {
-      border-color: red;
-      box-shadow: 0 0 0 0.15rem rgb(255 0 0 / 50%);
-    }
-  }
-}
 
 .bold {
-    font-weight: bold !important;
+  font-weight: bold !important;
 }
 
 mat-icon {
-    display: flex !important;
-    justify-content: center;
-    align-items: center;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
+
+.mat-menu-panel {
+  &.dark {
+    background-color: $footer-bg-color;
+    box-shadow: none;
+
+    .mat-menu-content {
+      padding: 0;
+
+      .mat-menu-item {
+        color: $txt-color;
+      }
+    }
+  }
 }

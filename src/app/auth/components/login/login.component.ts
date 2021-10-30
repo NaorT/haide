@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { AuthService } from '../../../services/auth/auth.service';
+import { AuthService } from '../../state/auth.service';
+import * as Icon from '@fortawesome/free-brands-svg-icons';
 
 @Component({
   selector: 'app-login',
@@ -9,39 +8,15 @@ import { AuthService } from '../../../services/auth/auth.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  form?: FormGroup;
   signInFailed = false;
+  googleIcon = Icon.faGoogle;
+  facebookIcon = Icon.faFacebookF;
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService) { }
 
-  ngOnInit(): void {
-    // this.authService.register({email: 't@t.com', password: '12345678'})
-    this.form = new FormGroup({
-      email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required, Validators.minLength(8)])
-    })
+  ngOnInit(): void { }
+
+  signIn(option: 'facebook' | 'google') {
+    this.authService.signIn(option);
   }
-
-  signInWithGoogle() {
-    this.authService.signInWithGoogle().subscribe((res) => {
-      console.log(res);
-      this.router.navigate(['main']);
-    }, (err) => {
-      console.log(err);
-    })
-  }
-
-  signIn() {
-    if (!this.form?.valid) {
-      this.form?.markAllAsTouched();
-      return;
-    }
-    this.authService.signIn(this.form.value).subscribe((res) => {
-      console.log(res);
-      this.router.navigate(['main']);
-    }, (err) => {
-      this.signInFailed = true;
-    })
-  }
-
 }

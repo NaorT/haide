@@ -49,9 +49,23 @@
     background: $content-bg-color;
     position: fixed;
     top: 0;
-    // left: 240px;
     right: 0;
-    padding-left: 250px;
+    padding-left: 260px;
+
+    .user-info {
+      .user-img {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+      }
+    }
+
+    .notification-wrapper {
+      padding: 5px;
+      border-radius: 50%;
+      background-color: $footer-bg-color;
+      cursor: pointer;
+    }
   }
 
   .main-footer {
@@ -68,12 +82,4 @@
 hr {
   color: $txt-color;
   height: 2px;
-}
-
-.app-logo {
-  color: $orange;
-  padding: 0 12px;
-  mat-icon {
-      font-size: 32px;
-  }
 }

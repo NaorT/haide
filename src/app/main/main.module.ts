@@ -9,6 +9,8 @@ import { SearchPageComponent } from './components/search-page/search-page.compon
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { SearchBarModule } from '../search-bar/search-bar.module';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -22,7 +24,9 @@ import { MatIconModule } from '@angular/material/icon';
     MatSidenavModule,
     FormsModule,
     ReactiveFormsModule,
-    MatIconModule
+    MatIconModule,
+    MatMenuModule,
+    SearchBarModule
   ]
 })
 export class MainModule { }

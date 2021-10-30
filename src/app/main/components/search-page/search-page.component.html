@@ -1,1 +1,6 @@
 <p>search-page works!</p>
+
+<div *ngIf="searchResults$ | async as results">
+
+  <div *ngFor="let item of results">{{item.name}}</div>
+</div>

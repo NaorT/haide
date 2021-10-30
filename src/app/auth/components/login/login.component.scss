@@ -1,28 +1,50 @@
-.auth-wrapper {
+@import '../../../../colors.scss';
+
+.wrapper {
+  background: $content-bg-color;
+
   .title {
-    font-size: 40px;
+    font-size: 50px;
+    font-weight: bold;
+    color: $txt-color;
+  }
+
+  .card {
+    transition: all ease-in .1s;
+    background-color: $footer-bg-color;
+    width: 300px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $txt-color;
+    cursor: pointer;
+
+    .provider-icon {
+      font-size: 50px;
+      transition: all ease-in .1s;
+    }
+
+    .txt-wrapper {
+      transition: all ease-in .1s;
+
+      .provider-name {
+        font-size: 18px;
+        font-weight: 600;
+
+      }
+    }
+
+    &:hover {
+
+      .provider-icon {
+        transform: scale(2.2);
+        margin-top: 50px;
+      }
+
+      .txt-wrapper {
+        opacity: 0;
+      }
+    }
   }
 }
-
-.line-before-after {
-  display: flex;
-
-  &::before,
-  &::after {
-    content: "";
-    flex: 1 1;
-    border-bottom: 1px solid;
-    margin: auto;
-  }
-
-  &::before {
-    margin-right: 10px;
-  }
-
-  &::after {
-    margin-left: 10px;
-  }
-
-}
-
-
