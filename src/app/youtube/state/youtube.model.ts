@@ -1,16 +1,23 @@
-// export interface YoutubeItem {
-//   id: number | string;
-//   name: string;
-// }
-
-export interface YoutubeResult {
-  id: number | string;
-  name: string;
+interface Thumbnails {
+  url: string,
+  width: number,
+  height: number
 }
 
-export function createYoutubeResult({ name, id }: Partial<YoutubeResult>) {
+export interface YoutubeResult {
+  id: string;
+  title: string;
+  thumbnails: {
+    default: Thumbnails | null
+    medium: Thumbnails| null
+    high: Thumbnails| null
+  }
+}
+
+export function createYoutubeResult({ title, id, thumbnails }: Partial<YoutubeResult>) {
   return {
-    name,
-    id
+    title,
+    id,
+    thumbnails
   } as YoutubeResult;
 }

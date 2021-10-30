@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { filter, map, tap } from 'rxjs/operators';
 import { User } from '../../auth/state/auth.model';
 import { AuthQuery } from '../../auth/state/auth.query';
+import { YoutubeResult } from '../../youtube/state/youtube.model';
 
 @Component({
   selector: 'app-main',
@@ -18,6 +19,7 @@ export class MainComponent implements OnInit {
     top: new FormControl(0)
   });
   user$: Observable<User | null> = this.authQuery.selectUser$;
+  
 
   constructor(private authQuery: AuthQuery) { }
 

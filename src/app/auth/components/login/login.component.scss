@@ -1,17 +1,29 @@
 @import '../../../../colors.scss';
 
 .wrapper {
-  background: $content-bg-color;
+  // background: $content-bg-color;
+  background-image: $login-bg-img;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 
-  .title {
-    font-size: 50px;
+  .title,
+  .sub-title {
     font-weight: bold;
     color: $txt-color;
   }
 
+  .title {
+    font-size: 50px;
+  }
+
+  .sub-title {
+    font-size: 35px;
+  }
+
   .card {
     transition: all ease-in .1s;
-    background-color: $footer-bg-color;
+    background-color: $content-bg-color;
     width: 300px;
     height: 300px;
     display: flex;
@@ -27,6 +39,7 @@
 
     .txt-wrapper {
       transition: all ease-in .1s;
+      font-size: 16px;
 
       .provider-name {
         font-size: 18px;

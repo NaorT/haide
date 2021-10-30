@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { MainRoutingModule } from './main-routing.module';
 import { HomeComponent } from './components/home/home.component';
 import { MainComponent } from './main/main.component';
@@ -11,11 +10,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { SearchBarModule } from '../search-bar/search-bar.module';
+import { VideoItemModule } from '../video-item/video-item.module';
+import { PlaylistPageComponent } from './components/playlist-page/playlist-page.component';
+
 @NgModule({
   declarations: [
     HomeComponent,
     MainComponent,
-    SearchPageComponent
+    SearchPageComponent,
+    PlaylistPageComponent
   ],
   imports: [
     CommonModule,
@@ -26,7 +29,8 @@ import { SearchBarModule } from '../search-bar/search-bar.module';
     ReactiveFormsModule,
     MatIconModule,
     MatMenuModule,
-    SearchBarModule
+    SearchBarModule,
+    VideoItemModule
   ]
 })
 export class MainModule { }

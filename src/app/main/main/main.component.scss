@@ -41,8 +41,13 @@
 }
 
 .side-nav-content {
-  background: $content-bg-color;
+  // background: $content-bg-color;
+  background-image: $main-content-bg-img;
   color: $txt-color;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 
   .main-header {
     color: $txt-color;

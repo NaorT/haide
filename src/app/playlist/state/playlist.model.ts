@@ -1,11 +1,9 @@
-export interface PlaylistItem {
-  id: number | string;
-  name: string;
-}
+import { YoutubeResult } from '../../youtube/state/youtube.model';
+
 export interface Playlist {
   id: number | string;
   name: string;
-  items: PlaylistItem[];
+  items: YoutubeResult[];
 }
 
 export function createPlaylist({ id, name, items }: Partial<Playlist>) {

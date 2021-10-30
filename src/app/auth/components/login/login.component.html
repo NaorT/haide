@@ -1,13 +1,15 @@
 <div class="d-flex vh-100 justify-content-center align-items-center wrapper">
   <div class="d-flex justify-content-center align-items-center flex-column gap-5">
-    <div>
-      <h1 class="title m-0">Welcome</h1>
+    <div class="text-center">
+      <h1 class="title mb-4">Welcome</h1>
+      <h3 class="sub-title">Discover and share your sound</h3>
     </div>
     <div class="d-flex align-items-center gap-4">
       <div class="card shadow gap-4" (click)="signIn('google')">
         <fa-icon class="provider-icon google" [icon]="googleIcon"></fa-icon>
         <div class="txt-wrapper">Sign in with <span class="provider-name google">Google</span></div>
       </div>
+      
       <div class="card shadow gap-4" (click)="signIn('facebook')">
         <fa-icon class="provider-icon facebook" [icon]="facebookIcon"></fa-icon>
         <div class="txt-wrapper">Sign in with <span class="provider-name facebook">Facebook</span></div>
@@ -15,3 +17,4 @@
     </div>
   </div>
 </div>
+

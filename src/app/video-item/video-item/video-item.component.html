@@ -1,0 +1,4 @@
+<div class="p-rel item-wrapper">
+  <youtube-player *ngIf="item" [width]="item?.thumbnails?.default?.width || 300" [height]="item?.thumbnails?.default?.height || 300" (change)="onStateChange($event)" 
+    [videoId]="item?.id || '' "></youtube-player>
+</div>

@@ -8,6 +8,7 @@ import { environment } from '../environments/environment';
 import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatMenuModule } from '@angular/material/menu';
+import { HttpClientModule } from '@angular/common/http';
 
 export function initFirebase() {
   return () => initializeApp(environment.firebaseConfig);
@@ -22,6 +23,7 @@ export function initFirebase() {
     BrowserAnimationsModule,
     FontAwesomeModule,
     MatMenuModule,
+    HttpClientModule,
     environment.production ? [] : AkitaNgDevtools.forRoot(),
   ],
   providers: [

@@ -9,11 +9,16 @@ import { YoutubeQuery } from '../../../youtube/state/youtube.query';
   styleUrls: ['./search-page.component.scss']
 })
 export class SearchPageComponent implements OnInit {
-  searchResults$?: Observable<YoutubeResult[]>;
+  searchResults$?: Observable<YoutubeResult[]> = this.youtubeQuery.selectResults$;
+
   constructor(private youtubeQuery: YoutubeQuery) { }
 
-  ngOnInit(): void {
-    this.searchResults$ = this.youtubeQuery.selectResults$;
+  ngOnInit(): void { }
+
+  playSong(item: YoutubeResult) {
+    console.log(item);
+    
+
   }
 
 }
