@@ -1,4 +1,4 @@
-<div *ngIf="searchResults$ | async as results">
+<div *ngIf="searchPageResults$ | async as results">
   <h1 class="ps-3">Search results</h1>
   <div class="d-flex flex-wrap results-wrapper gap-5">
     <div class="item-wrapper col-2 p-0 p-rel" *ngFor="let item of results">

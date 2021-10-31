@@ -1,1 +1,14 @@
-<p>playlist-page works!</p>
+<div *ngIf="selectActive$ | async as playlist">
+  <div>{{playlist.id}}</div>
+
+  <!-- <div>
+    <app-search-bar ctx='playlist'></app-search-bar>
+  </div> -->
+
+  <div *ngIf="selectPlaylistPageResults$ | async as results">
+    <div *ngFor="let item of results">
+      {{item.id}}
+    </div>
+  </div>
+
+</div>

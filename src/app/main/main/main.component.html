@@ -20,11 +20,17 @@
         <span class="title">Search</span>
       </div>
 
-      <div class="link" [routerLink]="'playlist'">
+      <div (click)="createNewPlaylist()" class="link">
         <mat-icon class="material-icons-outlined">add_box</mat-icon>
         <span class="title">Create Playlist</span>
       </div>
+
       <hr>
+
+      <div *ngIf="selectPlaylists$ | async as playlists">
+        <div [routerLink]="['playlist', list.id]" routerLinkActive="is-active" (click)="setActiveList(list)"
+          class="link list-item py-1" *ngFor="let list of playlists">{{list.name}}</div>
+      </div>
 
     </mat-sidenav>
 
@@ -38,7 +44,7 @@
           <span class="ms-3">{{'Hi, ' + user.displayName}}</span>
         </div>
         <div>
-          <app-search-bar></app-search-bar>
+          <app-search-bar ctx='search'></app-search-bar>
         </div>
         <div class="notification-wrapper d-flex justify-content-end">
           <mat-icon [matMenuTriggerFor]="menu" class="material-icons-outlined">
@@ -53,7 +59,7 @@
       <router-outlet></router-outlet>
       <mat-toolbar class="main-footer">
         <div>
-          
+
         </div>
         TBD: Active song
       </mat-toolbar>

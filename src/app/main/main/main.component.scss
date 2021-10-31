@@ -36,6 +36,10 @@
 
     &.is-active {
       background-color: rgba($gray-dark, .7);
+      &.list-item {
+        background-color: transparent;
+        opacity: 1;
+      }
     }
   }
 }

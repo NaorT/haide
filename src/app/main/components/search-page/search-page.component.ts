@@ -9,7 +9,7 @@ import { YoutubeQuery } from '../../../youtube/state/youtube.query';
   styleUrls: ['./search-page.component.scss']
 })
 export class SearchPageComponent implements OnInit {
-  searchResults$?: Observable<YoutubeResult[]> = this.youtubeQuery.selectResults$;
+  searchPageResults$?: Observable<YoutubeResult[]> = this.youtubeQuery.selectSearchPageResults$;
 
   constructor(private youtubeQuery: YoutubeQuery) { }
 

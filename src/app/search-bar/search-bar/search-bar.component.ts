@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { NavigationEnd, Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -13,23 +13,18 @@ import { YoutubeService } from '../../youtube/state/youtube.service';
 })
 export class SearchBarComponent implements OnInit {
   @Output() search: EventEmitter<string> = new EventEmitter<string>();
+  @Input() ctx: string = 'search | playlist';
   form = new FormGroup({
     searchTerm: new FormControl()
   });
-  shouldShow$?: Observable<boolean>;
 
-  constructor(private router: Router, private youtubeService: YoutubeService) {
-    this.shouldShow$ = this.router.events.pipe(
-      filter((e) => e instanceof NavigationEnd),
-      map((ev) => (ev as NavigationEnd).url.includes('/search')),
-    );
-  }
+  constructor(private youtubeService: YoutubeService) {}
 
   ngOnInit(): void {
     this.form.controls['searchTerm'].valueChanges.pipe(
       debounceTime(300),
       distinctUntilChanged(),
-      switchMap((value) => this.youtubeService.search(value)),
+      switchMap((value) => this.youtubeService.search(value, this.ctx)),
     ).subscribe()
   }
 }

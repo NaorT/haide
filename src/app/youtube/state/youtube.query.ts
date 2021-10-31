@@ -7,7 +7,9 @@ import { YoutubeStore, YoutubeState } from './youtube.store';
 @Injectable({ providedIn: 'root' })
 export class YoutubeQuery extends QueryEntity<YoutubeState> {
 
-  selectResults$: Observable<YoutubeResult[]> = this.select((entity) => entity.items)
+  selectSearchPageResults$: Observable<YoutubeResult[]> = this.select((entity) => entity.searchPageItems);
+  selectPlaylistPageResults$: Observable<YoutubeResult[]> = this.select((entity) => entity.playlistPageItems);
+
 
   constructor(protected store: YoutubeStore) {
     super(store);

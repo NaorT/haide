@@ -15,8 +15,8 @@ export class YoutubeService extends EntityService<YoutubeState> {
     super();
   }
 
-  search(value: string) {
-    // return this.http.get(`${YOUTUBE_BASE_URL}/search?type=video&part=snippet,id&maxResults=1&q=${value}&key=${'AIzaSyDOCGnCtKje_Zex8vUGWji_g4NwQ_wJTHI'}&videoEmbeddable=true`)
+  search(value: string, ctx: string = 'search | playlist') {
+    // return this.http.get(`${YOUTUBE_BASE_URL}/search?type=video&part=snippet,id&maxResults=2&q=${value}&key=${'AIzaSyDOCGnCtKje_Zex8vUGWji_g4NwQ_wJTHI'}&videoEmbeddable=true`)
     return of(mock)
       .pipe(
         map((res: any) => res.items),
@@ -26,7 +26,8 @@ export class YoutubeService extends EntityService<YoutubeState> {
           thumbnails: item.snippet.thumbnails
         }))),
         tap((results: YoutubeResult[]) => this.store.update((state) => {
-          return { ...state, items: results }
+          let items = ctx === 'search' ? 'searchPageItems' : 'playlistPageItems';
+          return { ...state, [items]: results }
         }))
       )
   }

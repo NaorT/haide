@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { Router } from '@angular/router';
+import { guid } from '@datorama/akita';
 import { Observable } from 'rxjs';
-import { filter, map, tap } from 'rxjs/operators';
 import { User } from '../../auth/state/auth.model';
 import { AuthQuery } from '../../auth/state/auth.query';
-import { YoutubeResult } from '../../youtube/state/youtube.model';
+import { createPlaylist, Playlist } from '../../playlist/state/playlist.model';
+import { PlaylistQuery } from '../../playlist/state/playlist.query';
+import { PlaylistService } from '../../playlist/state/playlist.service';
 
 @Component({
   selector: 'app-main',
@@ -19,16 +21,25 @@ export class MainComponent implements OnInit {
     top: new FormControl(0)
   });
   user$: Observable<User | null> = this.authQuery.selectUser$;
-  
+  selectPlaylists$: Observable<Playlist[]> = this.playlistQuery.selectPlaylists$;
 
-  constructor(private authQuery: AuthQuery) { }
+  constructor(
+    private authQuery: AuthQuery,
+    private playlistService: PlaylistService,
+    private playlistQuery: PlaylistQuery,
+    private router: Router
+  ) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { }
 
+  createNewPlaylist() {
+    const newPlaylist = createPlaylist({ id: guid(), name: `New Playlist`, items: [] });
+    this.playlistService.createNewPlayList(newPlaylist);
+    this.setActiveList(newPlaylist);
+    this.router.navigate([`main/playlist/${newPlaylist.id}`]);
   }
 
-  search($event: string) {
-    console.log($event);
+  setActiveList(list: Playlist) {
+    this.playlistService.setAsActive(list);
   }
-
 }

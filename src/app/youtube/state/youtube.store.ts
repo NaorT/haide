@@ -3,7 +3,8 @@ import { EntityState, EntityStore, StoreConfig } from '@datorama/akita';
 import { YoutubeResult } from './youtube.model';
 
 export interface YoutubeState extends EntityState<YoutubeResult> {
-  items: YoutubeResult[]
+  searchPageItems: YoutubeResult[];
+  playlistPageItems: YoutubeResult[];
  }
 
 
