@@ -42,7 +42,10 @@ export class MainComponent implements OnInit {
   }
 
   createNewPlaylist() {
-    this.dialog.open(CreatePlaylistPopupComponent, { width: '30vw', height: '30vh', panelClass: 'dark' }).afterClosed().subscribe((res) => {
+    this.dialog.open(CreatePlaylistPopupComponent, { width: '30vw', height: '40vh', panelClass: 'dark' }).afterClosed().subscribe((res) => {
+      if (!res) {
+        return;
+      }
       const newPlaylist = createPlaylist({ id: guid(), name: res, items: [], createdBy: (this.authQuery.getActive() as User)?.displayName });
       this.playlistService.createNewPlayList(newPlaylist);
       this.setActiveList(newPlaylist);

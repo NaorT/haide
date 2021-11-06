@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-create-playlist-popup',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreatePlaylistPopupComponent implements OnInit {
   name: string = '';
+  nameCtrl = new FormControl('', [Validators.required, Validators.maxLength(50)]);
   constructor(
   ) { }
 
