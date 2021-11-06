@@ -5,7 +5,6 @@
     <input type="text" [formControl]="nameCtrl" class="name-input shadow mb-2">
     <small class="ps-1" *ngIf="nameCtrl.dirty && nameCtrl.hasError('required')">Playlist title is required</small>
     <small class="ps-1" *ngIf="nameCtrl.dirty && nameCtrl.hasError('maxlength')">Playlist title is too long</small>
-
   </mat-dialog-content>
   <mat-dialog-actions class="d-flex gap-3" align="end">
     <button class="btn btn-light bold" [disabled]="!nameCtrl.valid" mat-button [mat-dialog-close]="nameCtrl.value"

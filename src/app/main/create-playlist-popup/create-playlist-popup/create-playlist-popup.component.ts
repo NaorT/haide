@@ -7,10 +7,9 @@ import { FormControl, Validators } from '@angular/forms';
   styleUrls: ['./create-playlist-popup.component.scss']
 })
 export class CreatePlaylistPopupComponent implements OnInit {
-  name: string = '';
-  nameCtrl = new FormControl('', [Validators.required, Validators.maxLength(50)]);
-  constructor(
-  ) { }
+  nameCtrl = new FormControl('', [Validators.required, Validators.maxLength(15)]);
+  
+  constructor() { }
 
   ngOnInit(): void {
   }
