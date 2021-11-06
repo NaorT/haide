@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { EntityService } from '@datorama/akita';
 import { Observable } from 'rxjs';
+import { YoutubeResult } from '../../youtube/state/youtube.model';
 import { Playlist } from './playlist.model';
 import { PlaylistStore, PlaylistState } from './playlist.store';
 
@@ -25,12 +26,35 @@ export class PlaylistService extends EntityService<PlaylistState> {
   }
 
   createNewPlayList(playlist: Playlist) {
-    this.store.add(playlist);
+    this.store.upsert(playlist.id, playlist);
   }
 
-  setAsActive(playlist: Playlist) {
-    this.store.setActive(playlist.id);
+  setAsActive(playlistId: string) {
+    this.store.setActive(playlistId);
   }
 
+  addItemToPlaylist(item: YoutubeResult, addedBy?: string, playListId?: string) {
+    this.store.updateActive(active => {
+      return {
+        items: [...active.items, { ...item, addedBy, playListId }]
+      }
+    })
+  }
+
+  removeItemFromPlaylist(item: YoutubeResult) {
+    this.store.updateActive(active => {
+      return {
+        items: [...active.items.filter((x) => x.id !== item.id)]
+      }
+    })
+  }
+
+  updateCurrentlyPlayed(item: YoutubeResult) {
+    this.store.update({ currentlyPlayed: item });
+  }
+
+  updateActive(id: string) {
+    this.store.updateActive({ id })
+  }
 
 }

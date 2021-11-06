@@ -1,0 +1,79 @@
+@import '../../../../../colors.scss';
+
+.item-wrapper {
+  display: flex;
+  justify-content: space-evenly;
+  border-radius: 4px;
+
+  .thumbnail {
+    transition: .3s;
+    border-radius: 0 0 4px 4px;
+  }
+
+  .actions {
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    opacity: 0;
+    transition: all .3s;
+
+    .action-icon {
+      font-size: 35px;
+      cursor: pointer;
+
+      &.play,
+      &.like {
+        transition: .3s;
+      }
+    }
+  }
+
+  .title {
+    transition: .3s;
+    background: rgba($black-color, .9);
+    border-radius: 0 0 4px 4px;
+    padding: 10px;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    overflow: hidden;
+    font-weight: 500;
+  }
+
+  &:hover {
+    box-shadow: rgba($black-color, 0.4) 0px 8px 24px;
+
+    .thumbnail {
+      opacity: 0.3;
+    }
+
+    .actions {
+      opacity: 1;
+
+      .action-icon {
+
+        &.play {
+          &:hover {
+            color: $play-color;
+          }
+        }
+
+        &.like {
+          &:hover {
+            color: $like-color;
+          }
+        }
+      }
+    }
+
+    .title {
+      transform: translateY(5px) scale(1.05);
+      background: rgba($black-color, 1);
+      border-radius: 4px;
+    }
+  }
+
+
+}

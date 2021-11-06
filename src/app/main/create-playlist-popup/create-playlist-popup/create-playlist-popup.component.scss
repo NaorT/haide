@@ -1,0 +1,18 @@
+@import '../../../../colors.scss';
+
+.popup-title {
+    font-weight: bold;
+    letter-spacing: 1px;  
+}
+
+.name-input {
+    width: 60%;
+    padding: 12px;
+    border-radius: 4px;
+    outline: none;
+    border: 0;
+    background: $playlist-popup-input-color;
+    color: $txt-color;
+    font-size: 16px;
+    font-weight: 600;
+}

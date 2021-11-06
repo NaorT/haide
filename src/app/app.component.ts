@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter, map, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'haide';
+  activeRouter$ = this.router.events.pipe(
+    filter(event => event instanceof NavigationEnd),
+    map((navEndEvent) => navEndEvent as NavigationEnd),
+    (map((e) => e.url.includes('search'))));
+  constructor(private router: Router) { }
+
 }

@@ -3,49 +3,53 @@
       [fixedInViewport]="options?.value.fixed" [fixedTopGap]="options?.value?.top"
       [fixedBottomGap]="options?.value?.bottom">
 
-      <h1 class="d-flex align-items-center bold gap-2 app-logo">
-        <mat-icon class="material-icons">
-          play_circle_filled
-        </mat-icon>
-        HAIDE
-      </h1>
+      <div>
 
-      <div class="link" [routerLink]="'home'" routerLinkActive="is-active">
-        <mat-icon class="material-icons-outlined">home</mat-icon>
-        <span class="title">Home</span>
+        <h1 class="d-flex align-items-center bold gap-2 app-logo">
+          <mat-icon class="material-icons">
+            play_circle_filled
+          </mat-icon>
+          HAIDE
+        </h1>
+
+        <div class="link" [routerLink]="'home'" routerLinkActive="is-active">
+          <mat-icon class="material-icons-outlined">home</mat-icon>
+          <span class="title">Home</span>
+        </div>
+
+        <div class="link" [routerLink]="'search'" routerLinkActive="is-active">
+          <mat-icon class="material-icons-outlined">search</mat-icon>
+          <span class="title">Search</span>
+        </div>
+
+        <div (click)="createNewPlaylist()" class="link">
+          <mat-icon class="material-icons-outlined">add_box</mat-icon>
+          <span class="title">Create Playlist</span>
+        </div>
+        <hr>
+
+        <div *ngIf="selectPlaylists$ | async as playlists" class="lists-wrapper">
+          <div [routerLink]="['playlist', list.id]" routerLinkActive="is-active" (click)="setActiveList(list)"
+            class="link list-item py-1" *ngFor="let list of playlists">{{list.name}}</div>
+        </div>
       </div>
 
-      <div class="link" [routerLink]="'search'" routerLinkActive="is-active">
-        <mat-icon class="material-icons-outlined">search</mat-icon>
-        <span class="title">Search</span>
-      </div>
-
-      <div (click)="createNewPlaylist()" class="link">
-        <mat-icon class="material-icons-outlined">add_box</mat-icon>
-        <span class="title">Create Playlist</span>
-      </div>
-
-      <hr>
-
-      <div *ngIf="selectPlaylists$ | async as playlists">
-        <div [routerLink]="['playlist', list.id]" routerLinkActive="is-active" (click)="setActiveList(list)"
-          class="link list-item py-1" *ngFor="let list of playlists">{{list.name}}</div>
+      <div *ngIf="selectCurrentlyPlayed$ | async as video">
+        <app-video-item class="player" [video]="video"></app-video-item>
       </div>
 
     </mat-sidenav>
 
     <mat-sidenav-content class="p-4 side-nav-content" [formGroup]="options">
       <mat-toolbar class="main-header d-flex justify-content-between align-items-center pe-4">
-        <!-- <div class="user-info">
+        <div class="user-info">
           <span class="ms-3">Hi, Naor</span>
-        </div> -->
+        </div>
         <div class="user-info" *ngIf="user$ | async as user">
           <img class="user-img" [src]="user.photoURL">
           <span class="ms-3">{{'Hi, ' + user.displayName}}</span>
         </div>
-        <div>
-          <app-search-bar ctx='search'></app-search-bar>
-        </div>
+
         <div class="notification-wrapper d-flex justify-content-end">
           <mat-icon [matMenuTriggerFor]="menu" class="material-icons-outlined">
             notifications
@@ -58,10 +62,12 @@
       </mat-toolbar>
       <router-outlet></router-outlet>
       <mat-toolbar class="main-footer">
-        <div>
-
+        <div *ngIf="selectCurrentlyPlayed$ | async as song">
+          <div class="next-wrapper">
+            <small>Next song:</small>
+            <small></small>
+          </div>
         </div>
-        TBD: Active song
       </mat-toolbar>
     </mat-sidenav-content>
   </mat-sidenav-container>

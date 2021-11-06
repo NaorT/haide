@@ -1,1 +1,17 @@
-<p>home works!</p>
+<div class="pb-5" *ngIf="top5IL$ | async as results">
+  <h1 class="ps-3">Top 5 in Israel</h1>
+  <div class="d-flex flex-wrap results-wrapper gap-5">
+    <div class="col-2" *ngFor="let item of results">
+      <app-search-result-item (songStarted)="playSong($event)" [item]="item"></app-search-result-item>
+    </div>
+  </div>
+</div>
+
+<div class="pb-5" *ngIf="top5US$ | async as results">
+  <h1 class="ps-3">Top 5 in US</h1>
+  <div class="d-flex flex-wrap results-wrapper gap-5">
+    <div class="col-2" *ngFor="let item of results">
+      <app-search-result-item (songStarted)="playSong($event)" [item]="item"></app-search-result-item>
+    </div>
+  </div>
+</div>

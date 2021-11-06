@@ -61,3 +61,27 @@ mat-icon {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.pointer {
+  cursor: pointer;
+}
+
+
+mat-sidenav {
+  &.main-sidenav {
+    .mat-drawer-inner-container {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+    }
+  }
+}
+
+.cdk-overlay-pane {
+  &.dark {
+    .mat-dialog-container {
+      background-color: $content-bg-color;
+      color: $txt-color;
+    }
+  }
+}

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { NavigationEnd, Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -9,11 +9,13 @@ import { YoutubeService } from '../../youtube/state/youtube.service';
 @Component({
   selector: 'app-search-bar',
   templateUrl: './search-bar.component.html',
-  styleUrls: ['./search-bar.component.scss']
+  styleUrls: ['./search-bar.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SearchBarComponent implements OnInit {
   @Output() search: EventEmitter<string> = new EventEmitter<string>();
   @Input() ctx: string = 'search | playlist';
+  @Input() placeholder: string = 'Search...'
   form = new FormGroup({
     searchTerm: new FormControl()
   });

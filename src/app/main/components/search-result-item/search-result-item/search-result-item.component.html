@@ -1,0 +1,10 @@
+<div *ngIf="item" class="item-wrapper p-0 p-rel">
+  <img class="thumbnail w-100" [src]="item.thumbnails.medium?.url">
+  <div class="title p-abs d-flex align-items-center">
+    <div class="ellipsis p-abs w-75">{{item.title}}</div>
+  </div>
+  <div class="actions gap-4">
+    <mat-icon (click)="playSong(item)" class="material-icons-outlined action-icon play">play_circle_filled</mat-icon>
+    <mat-icon (click)="addSong(item)" class="material-icons-outlined action-icon like">favorite</mat-icon>
+  </div>
+</div>

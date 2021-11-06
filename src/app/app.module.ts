@@ -9,6 +9,8 @@ import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatMenuModule } from '@angular/material/menu';
 import { HttpClientModule } from '@angular/common/http';
+import { SearchBarModule } from './search-bar/search-bar.module';
+import { MatDialogModule } from '@angular/material/dialog';
 
 export function initFirebase() {
   return () => initializeApp(environment.firebaseConfig);
@@ -24,6 +26,8 @@ export function initFirebase() {
     FontAwesomeModule,
     MatMenuModule,
     HttpClientModule,
+    SearchBarModule,
+    MatDialogModule,
     environment.production ? [] : AkitaNgDevtools.forRoot(),
   ],
   providers: [

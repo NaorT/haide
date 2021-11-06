@@ -1,14 +1,47 @@
-<div *ngIf="selectActive$ | async as playlist">
-  <div>{{playlist.id}}</div>
+<div class="pb-5 gap-4" *ngIf="selectActive$ | async as playlist">
+  <div class="header-wrapper px-4">
+    <div class="d-flex align-items-center gap-5 justify-content-between ">
+      <div class="d-flex align-items-center gap-5">
+        <div class="d-flex align-items-center gap-4">
+          <div [contentEditable]="true" class="playlist-title">{{playlist.name}}</div>
+        </div>
+        <h3 class="m-0 p-0" *ngIf="playlist.items.length > 0">{{playlist.items.length}}
+          {{playlist.items.length === 1 ? 'song' : 'songs'}}</h3>
+        <app-search-bar placeholder="Find and add something to your playlist" ctx='playlist'></app-search-bar>
+      </div>
+      <div>Created At: {{playlist.createdAt | date}}</div>
+    </div>
 
-  <!-- <div>
-    <app-search-bar ctx='playlist'></app-search-bar>
-  </div> -->
+    <hr [hidden]="playlist.items.length === 0">
 
-  <div *ngIf="selectPlaylistPageResults$ | async as results">
-    <div *ngFor="let item of results">
-      {{item.id}}
+    <div class="d-flex flex-column p-2">
+      <div class="d-flex align-items-center" *ngFor="let song of playlist.items; let i = index">
+        <div class="d-flex w-100 song-box px-3 align-items-center justify-content-between gap-2">
+          <div class="d-flex align-items-center gap-2">
+            <div class="index mb-0 p-0">{{i + 1}}</div>
+            <mat-icon (click)="playSong(song, true)" class="play-icon material-icons pointer">
+              play_arrow
+            </mat-icon>
+            <img [src]="song.thumbnails.default?.url">
+            <div>{{song.title}}</div>
+          </div>
+          <div [hidden]="!song.addedBy">{{'Added by: ' + song.addedBy}}</div>
+          <mat-icon (click)="removeSongFromPlaylist(song)" class="delete material-icons pointer">
+            delete
+          </mat-icon>
+        </div>
+      </div>
     </div>
   </div>
 
+  <hr>
+
+  <div *ngIf="selectPlaylistPageResults$ | async as results">
+    <div class="d-flex flex-wrap results-wrapper playlist gap-5">
+      <div class="col-2" *ngFor="let item of results">
+        <app-search-result-item (songStarted)="playSong($event)" (songAdded)="addSongToPlaylist($event)" [item]="item">
+        </app-search-result-item>
+      </div>
+    </div>
+  </div>
 </div>

@@ -5,6 +5,8 @@ interface Thumbnails {
 }
 
 export interface YoutubeResult {
+  playlistId?: string;
+  addedBy?: string;
   id: string;
   title: string;
   thumbnails: {
@@ -14,10 +16,12 @@ export interface YoutubeResult {
   }
 }
 
-export function createYoutubeResult({ title, id, thumbnails }: Partial<YoutubeResult>) {
+export function createYoutubeResult({ title, id, thumbnails, addedBy, playlistId }: Partial<YoutubeResult>) {
   return {
+    playlistId,
     title,
     id,
-    thumbnails
+    thumbnails,
+    addedBy
   } as YoutubeResult;
 }

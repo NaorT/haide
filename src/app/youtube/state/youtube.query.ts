@@ -10,7 +10,6 @@ export class YoutubeQuery extends QueryEntity<YoutubeState> {
   selectSearchPageResults$: Observable<YoutubeResult[]> = this.select((entity) => entity.searchPageItems);
   selectPlaylistPageResults$: Observable<YoutubeResult[]> = this.select((entity) => entity.playlistPageItems);
 
-
   constructor(protected store: YoutubeStore) {
     super(store);
   }

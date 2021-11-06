@@ -14,8 +14,10 @@
   justify-content: center;
   width: 240px;
   background: $black-color;
-  padding: 15px;
+  padding: 15px 15px 0 15px;
   color: $white-color;
+
+
 
   .link {
     display: flex;
@@ -36,19 +38,25 @@
 
     &.is-active {
       background-color: rgba($gray-dark, .7);
+
       &.list-item {
         background-color: transparent;
         opacity: 1;
       }
     }
   }
+
+  .lists-wrapper {
+    max-height: 50vh;
+    overflow: auto;
+  }
+
+
 }
 
 .side-nav-content {
-  // background: $content-bg-color;
   background-image: $main-content-bg-img;
   color: $txt-color;
-  overflow: hidden;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;

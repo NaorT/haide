@@ -1,16 +1,8 @@
-<div *ngIf="searchPageResults$ | async as results">
+<div class="pb-5" *ngIf="searchPageResults$ | async as results">
   <h1 class="ps-3">Search results</h1>
   <div class="d-flex flex-wrap results-wrapper gap-5">
-    <div class="item-wrapper col-2 p-0 p-rel" *ngFor="let item of results">
-      <!-- {{item.id}} -->
-      <img class="thumbnail w-100" [src]="item.thumbnails.medium?.url">
-      <div class="title p-abs d-flex align-items-center">
-        <div class="ellipsis p-abs w-75">{{item.title}}</div>
-      </div>
-      <div class="actions gap-4">
-        <mat-icon (click)="playSong(item)" class="material-icons-outlined action-icon">play_circle_filled</mat-icon>
-        <mat-icon class="material-icons-outlined action-icon">favorite</mat-icon>
-      </div>
+    <div class="col-2" *ngFor="let item of results">
+      <app-search-result-item (songStarted)="playSong($event)" [item]="item"></app-search-result-item>
     </div>
   </div>
 </div>

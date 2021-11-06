@@ -1,0 +1,43 @@
+@import '../../../../colors.scss';
+
+.header-wrapper {
+  margin: 0 -24px;
+
+  .playlist-title {
+    font-size: 60px;
+    font-weight: bold;
+  }
+}
+
+.song-box {
+  padding: 10px;
+  font-weight: 600;
+  transition: all .2s;
+
+  .play-icon, .delete {
+    display: none !important;
+  }
+
+
+  img {
+    width: 50px;
+    height: 50px;
+  }
+
+  &:hover {
+    background: $footer-bg-color;
+    color: $txt-color;
+    transition: all .2s;
+
+    .index {
+      display: none;
+      transition: all .2s;
+    }
+
+    .play-icon,
+    .delete {
+      transition: all .2s;
+      display: flex !important;
+    }
+  }
+}

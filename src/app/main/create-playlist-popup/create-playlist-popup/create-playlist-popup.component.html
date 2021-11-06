@@ -1,0 +1,11 @@
+<div class="d-flex flex-column justify-content-between h-100">
+
+  <h1 class="popup-title" mat-dialog-title>Playlist title</h1>
+  <mat-dialog-content>
+    <input type="text" class="name-input shadow" [(ngModel)]="name">
+  </mat-dialog-content>
+  <mat-dialog-actions class="d-flex gap-3" align="end">
+    <button class="btn btn-light bold" mat-button [mat-dialog-close]="name" cdkFocusInitial>SAVE</button>
+  </mat-dialog-actions>
+
+</div>
