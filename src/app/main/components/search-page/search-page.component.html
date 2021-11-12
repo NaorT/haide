@@ -1,8 +1,9 @@
 <div class="pb-5" *ngIf="searchPageResults$ | async as results">
-  <h1 class="ps-3">Search results</h1>
+  <h1 class="fw-600">Search results</h1>
   <div class="d-flex flex-wrap results-wrapper gap-5">
     <div class="col-2" *ngFor="let item of results">
-      <app-search-result-item (songStarted)="playSong($event)" [item]="item"></app-search-result-item>
+      <app-search-result-item (songStarted)="playSong($event)" [shouldOpenMenu]="true"
+        (songAdded)="addSongToPlaylist($event)" [item]="item"></app-search-result-item>
     </div>
   </div>
 </div>

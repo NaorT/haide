@@ -17,4 +17,5 @@ export class PlaylistQuery extends QueryEntity<PlaylistState> {
     super(store);
   }
 
+
 }

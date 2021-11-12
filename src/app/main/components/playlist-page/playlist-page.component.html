@@ -7,7 +7,6 @@
         </div>
         <h3 class="m-0 p-0" *ngIf="playlist.items.length > 0">{{playlist.items.length}}
           {{playlist.items.length === 1 ? 'song' : 'songs'}}</h3>
-        <app-search-bar placeholder="Find and add something to your playlist" ctx='playlist'></app-search-bar>
       </div>
       <div>Created At: {{playlist.createdAt | date}}</div>
     </div>
@@ -35,6 +34,10 @@
   </div>
 
   <hr>
+  <div class="d-flex align-items-center mb-4">
+    <h1 class="me-3 mb-0 fw-600">Find and add something to your playlist</h1>
+    <app-search-bar ctx='playlist'></app-search-bar>
+  </div>
 
   <div *ngIf="selectPlaylistPageResults$ | async as results">
     <div class="d-flex flex-wrap results-wrapper playlist gap-5">

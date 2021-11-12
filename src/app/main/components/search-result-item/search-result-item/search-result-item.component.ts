@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { PlaylistService } from '../../../../playlist/state/playlist.service';
+import { Playlist } from '../../../../playlist/state/playlist.model';
+import { PlaylistQuery } from '../../../../playlist/state/playlist.query';
 import { YoutubeResult } from '../../../../youtube/state/youtube.model';
 
 @Component({
@@ -10,11 +11,12 @@ import { YoutubeResult } from '../../../../youtube/state/youtube.model';
 })
 export class SearchResultItemComponent implements OnInit {
   @Input() item?: YoutubeResult;
-  @Output() songAdded = new EventEmitter<YoutubeResult>();
+  @Input() shouldOpenMenu: boolean = false;
+  @Output() songAdded = new EventEmitter<{ item: YoutubeResult, playlist: Playlist | null }>();
   @Output() songStarted = new EventEmitter<YoutubeResult>();
+  selectPlaylists$ = this.playlistQuery.selectPlaylists$;
 
-
-  constructor(private playlistService: PlaylistService) { }
+  constructor(private playlistQuery: PlaylistQuery) { }
 
   ngOnInit(): void {
   }
@@ -23,8 +25,8 @@ export class SearchResultItemComponent implements OnInit {
     this.songStarted.emit(item);
   }
 
-  addSong(item: YoutubeResult) {
-    this.songAdded.emit(item);
+  addSong(item: YoutubeResult, playlist: Playlist | null) {
+    this.songAdded.emit({ item, playlist });
   }
 
 }

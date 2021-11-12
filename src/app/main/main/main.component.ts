@@ -42,14 +42,9 @@ export class MainComponent implements OnInit {
   }
 
   createNewPlaylist() {
-    this.dialog.open(CreatePlaylistPopupComponent, { width: '30vw', height: '30vh', panelClass: 'dark' }).afterClosed().subscribe((res) => {
-      if (!res) {
-        return;
-      }
-      const newPlaylist = createPlaylist({ id: guid(), name: res, items: [], createdBy: (this.authQuery.getActive() as User)?.displayName });
-      this.playlistService.createNewPlayList(newPlaylist);
-      this.setActiveList(newPlaylist);
-      this.router.navigate([`main/playlist/${newPlaylist.id}`]);
+    this.playlistService.openCreatePlaylistDialog().subscribe((res) => {
+      this.playlistService.addNewPlaylist(res, true);
+      this.router.navigate([`main/playlist/${this.playlistQuery.getActiveId()}`]);
     })
   }
 

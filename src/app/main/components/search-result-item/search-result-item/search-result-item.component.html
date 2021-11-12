@@ -3,8 +3,20 @@
   <div class="title p-abs d-flex align-items-center">
     <div class="ellipsis p-abs w-75">{{item.title}}</div>
   </div>
-  <div class="actions gap-4">
+  <div class="actions gap-4" *ngIf="selectPlaylists$ | async as playlists">
     <mat-icon (click)="playSong(item)" class="material-icons-outlined action-icon play">play_circle_filled</mat-icon>
-    <mat-icon (click)="addSong(item)" class="material-icons-outlined action-icon like">favorite</mat-icon>
+    <mat-icon *ngIf="!shouldOpenMenu" (click)="addSong(item, null)" class="material-icons-outlined action-icon like">
+      favorite
+    </mat-icon>
+    <mat-icon *ngIf="shouldOpenMenu" [matMenuTriggerFor]="menu" class="material-icons-outlined action-icon like">
+      favorite</mat-icon>
+
+    <mat-menu class="dark" #menu="matMenu">
+      <button (click)="addSong(item, null)" mat-menu-item>Add to new playlist</button>
+      <hr *ngIf="playlists.length > 0" class="my-0">
+      <button (click)="addSong(item, playlist)" *ngFor="let playlist of playlists"
+        mat-menu-item>{{playlist.name}}</button>
+    </mat-menu>
+
   </div>
 </div>

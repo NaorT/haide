@@ -37,13 +37,9 @@ export class PlaylistPageComponent implements OnInit {
     this.playlistService.updateCurrentlyPlayed(song);
   }
 
-  addSongToPlaylist(item: YoutubeResult) {
-    const addedBy = (this.authQuery.getActive() as User)?.displayName;
-    const playlist: Playlist = this.playlistQuery.getActive() as Playlist;
-    const isAlreadyExist: boolean = !!playlist.items.find((x) => item.id === x.id);
-    if (!isAlreadyExist) {
-      this.playlistService.addItemToPlaylist(item, addedBy, playlist.id);
-    }
+  addSongToPlaylist({ item, playlist }: { item: YoutubeResult, playlist: Playlist | null }) {
+    const activePlaylist: Playlist = this.playlistQuery.getActive() as Playlist;
+    this.playlistService.addSongToPlaylist(activePlaylist, item)
   }
 
   removeSongFromPlaylist(song: YoutubeResult) {

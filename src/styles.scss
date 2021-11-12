@@ -37,6 +37,7 @@ mat-icon {
   &.dark {
     background-color: $footer-bg-color;
     box-shadow: none;
+    color: $txt-color;
 
     .mat-menu-content {
       padding: 0;
@@ -84,4 +85,8 @@ mat-sidenav {
       color: $txt-color;
     }
   }
+}
+
+.fw-600 {
+  font-weight: 600 !important;
 }
