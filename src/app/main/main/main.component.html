@@ -34,8 +34,11 @@
         </div>
       </div>
 
-      <div *ngIf="selectCurrentlyPlayed$ | async as video">
-        <app-video-item class="player" [video]="video"></app-video-item>
+      
+      <div class="d-flex flex-column gap-3" *ngIf="selectCurrentlyPlayed$ | async as video">
+        <div class="fz-16 fw-600 px-3">Currently Playing</div>
+        <hr class="m-0">
+        <app-video-item class="player d-flex justify-content-center" [video]="video"></app-video-item>
       </div>
 
     </mat-sidenav>
@@ -61,7 +64,7 @@
       <mat-toolbar class="main-footer">
         <div *ngIf="selectCurrentlyPlayed$ | async as song">
           <div class="next-wrapper">
-            <small>Next song:</small>
+            <small>Next:</small>
             <small></small>
           </div>
         </div>

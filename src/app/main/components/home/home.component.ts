@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Playlist } from '../../../playlist/state/playlist.model';
+import { PlaylistQuery } from '../../../playlist/state/playlist.query';
 import { PlaylistService } from '../../../playlist/state/playlist.service';
 import { YoutubeResult } from '../../../youtube/state/youtube.model';
 import { YoutubeService } from '../../../youtube/state/youtube.service';
@@ -13,8 +14,10 @@ import { YoutubeService } from '../../../youtube/state/youtube.service';
 export class HomeComponent implements OnInit {
   top5IL$?: Observable<YoutubeResult[]>;
   top5US$?: Observable<YoutubeResult[]>;
+  selectLastUpdatedPlaylists$: Observable<Playlist[]> = this.playlistQuery.selectLastUpdatedPlaylists$;
 
   constructor(
+    private playlistQuery: PlaylistQuery,
     private playlistService: PlaylistService,
     private youtubeService: YoutubeService
   ) { }

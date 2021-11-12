@@ -1,5 +1,3 @@
-<div *ngIf="video">
-  <youtube-player [videoId]="video.id" #player suggestedQuality="default" [height]="200" [width]="200"
-    [showBeforeIframeApiLoads]="false" (stateChange)="videoStateChange($event)">
+  <youtube-player *ngIf="video" [videoId]="video.id" #player suggestedQuality="default" [height]="200" [width]="200"
+    (ready)="onReady()" (stateChange)="videoStateChange($event, player)">
   </youtube-player>
-</div>

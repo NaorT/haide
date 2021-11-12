@@ -42,6 +42,7 @@ export class PlaylistService extends EntityService<PlaylistState> {
   addItemToPlaylist(item: YoutubeResult, addedBy?: string, playListId?: string) {
     this.store.updateActive(active => {
       return {
+        lastUpdate: new Date().getTime(),
         items: [...active.items, { ...item, addedBy, playListId }]
       }
     })
@@ -78,7 +79,13 @@ export class PlaylistService extends EntityService<PlaylistState> {
     if (!res) {
       return;
     }
-    const newPlaylist = createPlaylist({ id: guid(), name: res, items: [], createdBy: (this.authQuery.getActive() as User)?.displayName });
+    const newPlaylist = createPlaylist(
+      {
+        id: guid(),
+        name: res,
+        items: [],
+        createdBy: (this.authQuery.getActive() as User)?.displayName
+      });
     this.store.upsert(newPlaylist.id, newPlaylist);
     this.snackBarService.openSnackBar('New playlist created');
     return newPlaylist;
