@@ -45,4 +45,8 @@ export class PlaylistPageComponent implements OnInit {
   removeSongFromPlaylist(song: YoutubeResult) {
     this.playlistService.removeItemFromPlaylist(song);
   }
+
+  remove(list: any) {
+    this.playlistService.removePlayList(list)
+  }
 }

@@ -43,8 +43,11 @@ export class MainComponent implements OnInit {
 
   createNewPlaylist() {
     this.playlistService.openCreatePlaylistDialog().subscribe((res) => {
-      this.playlistService.addNewPlaylist(res, true);
-      this.router.navigate([`main/playlist/${this.playlistQuery.getActiveId()}`]);
+      const playlist = this.playlistService.addNewPlaylist(res);
+      if (playlist) {
+        this.setActiveList(playlist)
+        this.router.navigate([`main/playlist/${playlist?.id}`]);
+      }
     })
   }
 
@@ -53,4 +56,6 @@ export class MainComponent implements OnInit {
       this.playlistService.setAsActive(list.id);
     }
   }
+
+  
 }

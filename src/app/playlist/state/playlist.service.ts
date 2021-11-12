@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { User } from '../../auth/state/auth.model';
 import { AuthQuery } from '../../auth/state/auth.query';
 import { CreatePlaylistPopupComponent } from '../../main/create-playlist-popup/create-playlist-popup/create-playlist-popup.component';
+import { SnackBarService } from '../../services/snack-bar/snack-bar.service';
 import { YoutubeResult } from '../../youtube/state/youtube.model';
 import { createPlaylist, Playlist } from './playlist.model';
 import { PlaylistStore, PlaylistState } from './playlist.store';
@@ -15,7 +16,8 @@ export class PlaylistService extends EntityService<PlaylistState> {
   constructor(
     protected store: PlaylistStore,
     private dialog: MatDialog,
-    private authQuery: AuthQuery
+    private authQuery: AuthQuery,
+    private snackBarService: SnackBarService
   ) {
     super();
   }
@@ -49,6 +51,10 @@ export class PlaylistService extends EntityService<PlaylistState> {
     })
   }
 
+  removePlayList(playList: Playlist) {
+    this.store.remove(playList.id)
+  }
+
   removeItemFromPlaylist(item: YoutubeResult) {
     this.store.updateActive(active => {
       return {
@@ -70,22 +76,23 @@ export class PlaylistService extends EntityService<PlaylistState> {
       { width: '30vw', height: '30vh', panelClass: 'dark' }).afterClosed()
   }
 
-  addNewPlaylist(res: string, shouldSetAsActive: boolean = false) {
+  addNewPlaylist(res: string) {
     if (!res) {
       return;
     }
     const newPlaylist = createPlaylist({ id: guid(), name: res, items: [], createdBy: (this.authQuery.getActive() as User)?.displayName });
     this.store.upsert(newPlaylist.id, newPlaylist);
-    if (shouldSetAsActive) {
-      this.setAsActive(newPlaylist.id);
-    }
+    this.snackBarService.openSnackBar('New playlist created');
+    return newPlaylist;
   }
 
   addSongToPlaylist(playlist: Playlist, item: YoutubeResult) {
     const addedBy = (this.authQuery.getActive() as User)?.displayName;
     const isAlreadyExist: boolean = !!playlist.items.find((x) => item.id === x.id);
     if (!isAlreadyExist) {
+      console.log(2);
       this.addItemToPlaylist(item, addedBy, playlist.id);
+      this.snackBarService.openSnackBar('Song added to you playlist');
     }
   }
 }

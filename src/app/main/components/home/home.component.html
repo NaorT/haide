@@ -4,7 +4,8 @@
       <h1 class="fw-600">Top 5 in Israel</h1>
       <div class="d-flex flex-column results-wrapper gap-5">
         <div class="col" *ngFor="let item of results">
-          <app-search-result-item (songStarted)="playSong($event)" [item]="item"></app-search-result-item>
+          <app-search-result-item [shouldOpenMenu]="true" (songAdded)="addSongToPlaylist($event)"
+            (songStarted)="playSong($event)" [item]="item"></app-search-result-item>
         </div>
       </div>
     </div>
@@ -13,7 +14,8 @@
       <h1 class="fw-600">Top 5 in US</h1>
       <div class="d-flex flex-column results-wrapper gap-5">
         <div class="col" *ngFor="let item of results">
-          <app-search-result-item (songStarted)="playSong($event)" [item]="item"></app-search-result-item>
+          <app-search-result-item [shouldOpenMenu]="true" (songAdded)="addSongToPlaylist($event)"
+            (songStarted)="playSong($event)" [item]="item"></app-search-result-item>
         </div>
       </div>
     </div>

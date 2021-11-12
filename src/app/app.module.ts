@@ -11,6 +11,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchBarModule } from './search-bar/search-bar.module';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { SnackBarModule } from './snack-bar/snack-bar.module';
 
 export function initFirebase() {
   return () => initializeApp(environment.firebaseConfig);
@@ -26,6 +28,8 @@ export function initFirebase() {
     FontAwesomeModule,
     MatMenuModule,
     HttpClientModule,
+    MatSnackBarModule,
+    SnackBarModule,
     SearchBarModule,
     MatDialogModule,
     environment.production ? [] : AkitaNgDevtools.forRoot(),

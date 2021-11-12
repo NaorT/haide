@@ -8,11 +8,15 @@ import { YoutubeResult } from '../../youtube/state/youtube.model';
   styleUrls: ['./video-item.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class VideoItemComponent implements OnInit {
+export class VideoItemComponent implements OnInit, OnChanges {
   @ViewChild('player') player?: YouTubePlayer;
   @Input() video?: YoutubeResult;
 
   constructor() { }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes);
+  }
 
   ngOnInit(): void {
     this.initYTiframe();
@@ -25,6 +29,8 @@ export class VideoItemComponent implements OnInit {
   }
 
   videoStateChange($event: any) {
+    console.log(1);
+    
     // end of video
     if ($event.data === 0) {
     }

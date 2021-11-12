@@ -90,3 +90,13 @@ mat-sidenav {
 .fw-600 {
   font-weight: 600 !important;
 }
+
+snack-bar-container {
+  &.mat-snack-bar-container {
+    &.success {
+      background: green;
+      color: white;
+      font-weight: 600;
+    }
+  }
+}

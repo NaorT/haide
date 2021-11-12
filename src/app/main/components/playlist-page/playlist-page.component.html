@@ -2,13 +2,14 @@
   <div class="header-wrapper px-4">
     <div class="d-flex align-items-center gap-5 justify-content-between ">
       <div class="d-flex align-items-center gap-5">
-        <div class="d-flex align-items-center gap-4">
-          <div [contentEditable]="true" class="playlist-title">{{playlist.name}}</div>
-        </div>
+        <div class="playlist-title">{{playlist.name}}</div>
         <h3 class="m-0 p-0" *ngIf="playlist.items.length > 0">{{playlist.items.length}}
           {{playlist.items.length === 1 ? 'song' : 'songs'}}</h3>
       </div>
       <div>Created At: {{playlist.createdAt | date}}</div>
+      
+      <button (click)="remove(playlist)" class="btn btn-danger">Remove</button>
+
     </div>
 
     <hr [hidden]="playlist.items.length === 0">
