@@ -93,10 +93,15 @@ mat-sidenav {
 
 snack-bar-container {
   &.mat-snack-bar-container {
+    color: $white-color;
+    font-weight: 600;
+
     &.success {
-      background: green;
-      color: white;
-      font-weight: 600;
+      background: $play-color;
+    }
+
+    &.failed {
+      background: $like-color;
     }
   }
 }

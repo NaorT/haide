@@ -29,8 +29,6 @@ export class VideoItemComponent implements OnInit, OnChanges {
   }
 
   videoStateChange($event: any) {
-    console.log(1);
-    
     // end of video
     if ($event.data === 0) {
     }

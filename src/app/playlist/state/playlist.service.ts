@@ -35,10 +35,6 @@ export class PlaylistService extends EntityService<PlaylistState> {
     throw new Error('Method not implemented.');
   }
 
-  createNewPlayList(playlist: Playlist) {
-    this.store.upsert(playlist.id, playlist);
-  }
-
   setAsActive(playlistId: string) {
     this.store.setActive(playlistId);
   }
@@ -90,9 +86,10 @@ export class PlaylistService extends EntityService<PlaylistState> {
     const addedBy = (this.authQuery.getActive() as User)?.displayName;
     const isAlreadyExist: boolean = !!playlist.items.find((x) => item.id === x.id);
     if (!isAlreadyExist) {
-      console.log(2);
       this.addItemToPlaylist(item, addedBy, playlist.id);
-      this.snackBarService.openSnackBar('Song added to you playlist');
+      this.snackBarService.openSnackBar('Song added to your playlist');
+    } else {
+      this.snackBarService.openSnackBar('Song already exist in your playlist', false);
     }
   }
 }

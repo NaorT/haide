@@ -5,11 +5,13 @@ import { Playlist } from './playlist.model';
 
 export interface PlaylistState extends EntityState<Playlist> {
   currentlyPlayed: YoutubeResult | null;
+  playlists: Playlist[];
 }
 
 export function createInitialStore(): PlaylistState {
   return {
-    currentlyPlayed: null
+    currentlyPlayed: null,
+    playlists: []
   }
 }
 
