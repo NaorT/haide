@@ -1,15 +1,11 @@
 <div class="pb-5 gap-4" *ngIf="selectActive$ | async as playlist">
   <div class="header-wrapper px-4">
-    <div class="d-flex align-items-center gap-5 justify-content-between ">
-      <div class="d-flex align-items-center gap-5">
-        <div class="playlist-title">{{playlist.name}}</div>
-        <h3 class="m-0 p-0" *ngIf="playlist.items.length > 0">{{playlist.items.length}}
-          {{playlist.items.length === 1 ? 'song' : 'songs'}}</h3>
-      </div>
-      <div>Created At: {{playlist.createdAt | date}}</div>
-      
+    <div class="d-flex align-items-center justify-content-between">
+      <div (click)="updatePlaylistDetails(playlist)" class="playlist-title pointer">{{playlist.name}}</div>
+      <!-- <h3 class="m-0 p-0 fw-600" *ngIf="playlist.items.length > 0">{{playlist.items.length}}
+        {{playlist.items.length === 1 ? 'song' : 'songs'}}</h3> -->
+      <!-- <div class="fw-600">Created At: {{playlist.createdAt | date}}</div> -->
       <button (click)="remove(playlist)" class="btn btn-danger">Remove</button>
-
     </div>
 
     <hr [hidden]="playlist.items.length === 0">

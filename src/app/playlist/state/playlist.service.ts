@@ -63,13 +63,15 @@ export class PlaylistService extends EntityService<PlaylistState> {
     this.store.update({ currentlyPlayed: item });
   }
 
-  updateActive(id: string) {
-    this.store.updateActive({ id })
+  updateActiveName(playlist: Playlist) {
+    this.store.updateActive({
+      name: playlist.name,
+    })
   }
 
-  openCreatePlaylistDialog() {
+  openCreatePlaylistDialog(playlist?: Playlist) {
     return this.dialog.open(CreatePlaylistPopupComponent,
-      { width: '30vw', height: '30vh', panelClass: 'dark' }).afterClosed()
+      { width: '30vw', height: 'auto', panelClass: 'dark', data: playlist }).afterClosed();
   }
 
   addNewPlaylist(res: string) {

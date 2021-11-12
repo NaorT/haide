@@ -1,14 +1,15 @@
-<div class="d-flex flex-column justify-content-between h-100">
-
-  <h1 class="popup-title" mat-dialog-title>Playlist title</h1>
+<div class="d-flex flex-column">
+  <h1 class="popup-title mb-4" mat-dialog-title>{{playlist ? 'Edit ' : 'Create '}}  Playlist</h1>
   <mat-dialog-content class="d-flex flex-column">
-    <input type="text" [formControl]="nameCtrl" class="name-input shadow mb-2">
-    <small class="ps-1" *ngIf="nameCtrl.dirty && nameCtrl.hasError('required')">Playlist title is required</small>
-    <small class="ps-1" *ngIf="nameCtrl.dirty && nameCtrl.hasError('maxlength')">Playlist title is too long</small>
+    <label class="mb-1">Name</label>
+    <input type="text" [formControl]="nameCtrl" class="name-input mb-2">
+    <small class="ps-1 text-danger fw-600" *ngIf="nameCtrl.dirty && nameCtrl.hasError('required')">Playlist title is
+      required</small>
+    <small class="ps-1 text-danger fw-600" *ngIf="nameCtrl.dirty && nameCtrl.hasError('maxlength')">Playlist title is
+      too long</small>
   </mat-dialog-content>
-  <mat-dialog-actions class="d-flex gap-3" align="end">
-    <button class="btn btn-light bold" [disabled]="!nameCtrl.valid" mat-button [mat-dialog-close]="nameCtrl.value"
+  <mat-dialog-actions class="d-flex" align="end">
+    <button class="btn btn-success bold" [disabled]="!nameCtrl.valid" mat-button [mat-dialog-close]="nameCtrl.value"
       cdkFocusInitial>SAVE</button>
   </mat-dialog-actions>
-
 </div>

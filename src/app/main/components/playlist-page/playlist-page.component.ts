@@ -29,11 +29,11 @@ export class PlaylistPageComponent implements OnInit {
   }
 
   playSong(song: YoutubeResult, shouldActivatePlaylist: boolean = false) {
-    if (shouldActivatePlaylist) {
-      if (song.playlistId) {
-        this.playlistService.updateActive(song.playlistId);
-      }
-    }
+    // if (shouldActivatePlaylist) {
+    //   if (song.playlistId) {
+    //     this.playlistService.updateActive(song.playlistId);
+    //   }
+    // }
     this.playlistService.updateCurrentlyPlayed(song);
   }
 
@@ -48,5 +48,12 @@ export class PlaylistPageComponent implements OnInit {
 
   remove(list: any) {
     this.playlistService.removePlayList(list)
+  }
+
+  updatePlaylistDetails(playlist: Playlist) {
+    this.playlistService.openCreatePlaylistDialog(playlist).subscribe((res) => {
+      const updatedPlaylist: Playlist = {...playlist, name: res };
+      this.playlistService.updateActiveName(updatedPlaylist);
+    })
   }
 }
