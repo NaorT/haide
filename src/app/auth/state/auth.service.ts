@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { EntityService } from '@datorama/akita';
-import { NgEntityService } from '@datorama/akita-ng-entity-service';
 import { FacebookAuthProvider, getAuth, GoogleAuthProvider, signInWithPopup, UserCredential } from 'firebase/auth';
 import { Observable } from 'rxjs';
 import { createUser, User } from './auth.model';

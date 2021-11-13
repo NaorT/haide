@@ -23,7 +23,6 @@ export class VideoItemComponent implements OnInit, OnChanges {
     setTimeout(() => {
       this.video = changes.video.currentValue;
       this.cdr.detectChanges();
-      // this.playlistService.updateCurrentlyPlayed(changes.video);
     });
   }
 

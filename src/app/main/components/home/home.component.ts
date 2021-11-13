@@ -14,7 +14,6 @@ import { YoutubeService } from '../../../youtube/state/youtube.service';
 export class HomeComponent implements OnInit {
   top5IL$?: Observable<YoutubeResult[]>;
   top5US$?: Observable<YoutubeResult[]>;
-  selectLastUpdatedPlaylists$: Observable<Playlist[]> = this.playlistQuery.selectLastUpdatedPlaylists$;
 
   constructor(
     private playlistQuery: PlaylistQuery,

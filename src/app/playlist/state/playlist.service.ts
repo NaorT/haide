@@ -10,8 +10,10 @@ import { YoutubeResult } from '../../youtube/state/youtube.model';
 import { createPlaylist, Playlist } from './playlist.model';
 import { PlaylistStore, PlaylistState } from './playlist.store';
 
+
 @Injectable({ providedIn: 'root' })
 export class PlaylistService extends EntityService<PlaylistState> {
+
 
   constructor(
     protected store: PlaylistStore,
@@ -84,7 +86,7 @@ export class PlaylistService extends EntityService<PlaylistState> {
         id: guid(),
         name: res,
         items: [],
-        createdBy: (this.authQuery.getActive() as User)?.displayName
+        createdBy: (this.authQuery.getActive() as User)?.displayName || '',
       });
     this.store.upsert(newPlaylist.id, newPlaylist);
     this.snackBarService.openSnackBar('New playlist created');

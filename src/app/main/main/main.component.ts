@@ -28,7 +28,7 @@ export class MainComponent implements OnInit {
   selectPlaylists$: Observable<Playlist[]> = this.playlistQuery.selectPlaylists$;
   selectActivePlaylist$: Observable<Playlist> = this.playlistQuery.selectActive() as Observable<Playlist>;
   selectCurrentlyPlayed$: Observable<YoutubeResult | null> = this.playlistQuery.selectCurrentlyPlayed$;
-
+  selectNextPlayed$ = this.playlistQuery.selectNextPlayed$
 
   constructor(
     private authQuery: AuthQuery,
