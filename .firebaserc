@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "haide-65c53": {
+      "hosting": {
+        "haide": [
+          "haide-65c53"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "haide-65c53"
+  }
+}

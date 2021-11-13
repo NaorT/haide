@@ -110,6 +110,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "haide:build:production",
+            "firebaseProject": "haide-65c53",
+            "firebaseHostingSite": "haide-65c53"
+          }
         }
       }
     }
