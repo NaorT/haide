@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Order, QueryEntity } from '@datorama/akita';
-import { collection, CollectionReference, doc, getFirestore, onSnapshot } from 'firebase/firestore';
-import { forkJoin, Observable, of } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { QueryEntity } from '@datorama/akita';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { YoutubeResult } from '../../youtube/state/youtube.model';
 import { Playlist } from './playlist.model';
 import { PlaylistStore, PlaylistState } from './playlist.store';
+import { Firestore } from "@angular/fire/firestore";
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Injectable({ providedIn: 'root' })
 export class PlaylistQuery extends QueryEntity<PlaylistState> {
   selectPlaylists$: Observable<Playlist[]> = this.selectAll();
+  // selectPlaylists$: Observable<Playlist[]> = this.db.collection('playlists').valueChanges() as Observable<Playlist[]>;
   selectPlaylistsLength$: Observable<number> = this.selectPlaylists$.pipe(map(items => items.length));
   selectActive$: Observable<Playlist> = this.selectActive() as Observable<Playlist>;
   selectCurrentlyPlayed$: Observable<YoutubeResult | null> = this.select((state) => state.currentlyPlayed);
@@ -19,7 +21,9 @@ export class PlaylistQuery extends QueryEntity<PlaylistState> {
     })
   )
 
-  constructor(protected store: PlaylistStore) {
+  constructor(
+    protected store: PlaylistStore,
+    private db: AngularFirestore) {
     super(store);
   }
 

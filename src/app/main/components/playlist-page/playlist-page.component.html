@@ -22,7 +22,7 @@
             <div>{{song.title}}</div>
           </div>
           <div [hidden]="!song.addedBy">{{'Added by: ' + song.addedBy}}</div>
-          <mat-icon (click)="removeSongFromPlaylist(song)" class="delete material-icons pointer">
+          <mat-icon (click)="removeSongFromPlaylist(song, playlist)" class="delete material-icons pointer">
             delete
           </mat-icon>
         </div>

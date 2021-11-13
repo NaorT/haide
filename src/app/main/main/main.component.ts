@@ -39,6 +39,7 @@ export class MainComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.playlistService.getPlaylists().subscribe();
   }
 
   createNewPlaylist() {

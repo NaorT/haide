@@ -54,6 +54,17 @@ export class YoutubeService extends EntityService<YoutubeState> {
     )
   }
 
+  clearSearchResults(ctx: string = 'search | playlist') {
+    let pageItems = ctx === 'search' ? 'searchPageItems' : 'playlistPageItems';
+    this.store.update((state) => {
+      return {
+        ...state, [pageItems]: []
+      }
+    })
+
+
+  }
+
 
 
 

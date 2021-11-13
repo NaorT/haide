@@ -1,5 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 import { User } from '../../../auth/state/auth.model';
 import { AuthQuery } from '../../../auth/state/auth.query';
 import { Playlist } from '../../../playlist/state/playlist.model';
@@ -19,20 +21,32 @@ export class PlaylistPageComponent implements OnInit {
   selectPlaylistPageResults$: Observable<YoutubeResult[]> = this.youtubeQuery.selectPlaylistPageResults$;
   selectUser$: Observable<User | null> = this.authQuery.selectUser$;
 
+
   constructor(
+    private activatedRoute: ActivatedRoute,
     private playlistService: PlaylistService,
     private playlistQuery: PlaylistQuery,
     private youtubeQuery: YoutubeQuery,
     private authQuery: AuthQuery) { }
 
   ngOnInit(): void {
+    this.setActiveByIdIfExist();
+  }
+
+  private setActiveByIdIfExist() {
+    if (!this.playlistQuery.hasActive()) {
+      this.activatedRoute.params.pipe(
+        map((params) => params.id),
+        tap((id) => {
+          this.playlistService.setAsActive(id);
+        })
+      ).subscribe();
+    }
   }
 
   playSong(song: YoutubeResult, shouldActivatePlaylist: boolean = false) {
-    // if (shouldActivatePlaylist) {
-    //   if (song.playlistId) {
-    //     this.playlistService.updateActive(song.playlistId);
-    //   }
+    // if (shouldActivatePlaylist && song.playlistId) {
+    //   this.playlistService.setAsActive(song.playlistId);
     // }
     this.playlistService.updateCurrentlyPlayed(song);
   }
@@ -42,17 +56,17 @@ export class PlaylistPageComponent implements OnInit {
     this.playlistService.addSongToPlaylist(activePlaylist, item)
   }
 
-  removeSongFromPlaylist(song: YoutubeResult) {
-    this.playlistService.removeItemFromPlaylist(song);
+  removeSongFromPlaylist(song: YoutubeResult, playlist: Playlist) {
+    this.playlistService.removeItemFromPlaylist(song, playlist);
   }
 
   remove(list: any) {
-    this.playlistService.removePlayList(list)
+    this.playlistService.removePlayList(list);
   }
 
   updatePlaylistDetails(playlist: Playlist) {
     this.playlistService.openCreatePlaylistDialog(playlist).subscribe((res) => {
-      const updatedPlaylist: Playlist = {...playlist, name: res };
+      const updatedPlaylist: Playlist = { ...playlist, name: res };
       this.playlistService.updateActiveName(updatedPlaylist);
     })
   }

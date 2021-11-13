@@ -37,6 +37,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     SearchBarModule,
     VideoItemModule,
     SearchResultItemModule,
-  ]
+  ],
+  providers: []
 })
 export class MainModule { }

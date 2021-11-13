@@ -13,9 +13,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SnackBarModule } from './snack-bar/snack-bar.module';
 import { provideFirestore, getFirestore, FirestoreModule } from '@angular/fire/firestore';
-import { AuthModule } from './auth/auth.module';
-import { AngularFireModule } from '@angular/fire/compat';
-
+import { AngularFireModule  } from '@angular/fire/compat';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore'
 @NgModule({
   declarations: [
     AppComponent
@@ -35,7 +34,7 @@ import { AngularFireModule } from '@angular/fire/compat';
     AngularFireModule.initializeApp(environment.firebase),
     provideFirestore(() => getFirestore()),
     FirestoreModule,
-    AuthModule,
+    AngularFirestoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
